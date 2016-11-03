@@ -26,6 +26,12 @@ public class RootContext : MVCSContext, IRootContext
 
         EventManager eventManager = managers.GetComponent<EventManager>();
         injectionBinder.Bind<IEventManager>().ToValue(eventManager).ToSingleton().CrossContext();
+
+        ICameraLayerManager cameraManager = managers.GetComponent<ICameraLayerManager>();
+        injectionBinder.Bind<ICameraLayerManager>().ToValue(cameraManager).ToSingleton().CrossContext();
+
+        IGameLayerManager gameManager = managers.GetComponent<IGameLayerManager>();
+        injectionBinder.Bind<IGameLayerManager>().ToValue(gameManager).ToSingleton().CrossContext();
     }
 
     public void Inject(Object o)
