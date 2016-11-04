@@ -26,6 +26,8 @@ public class PortalScript : View
 
     private Material SideBRenderMaterial;
 
+    private ColorLayer currentLayer = ColorLayer.Normal;
+
     // Use this for initialization
     protected override void Start()
     {
@@ -56,6 +58,8 @@ public class PortalScript : View
 
         RootContext.Inject(SideA.triggerScript);
         RootContext.Inject(SideB.triggerScript);
+
+        EventManager.AddListener<ColorLayerChangedEvent>(HandleColorLayerChanged);
     }
 
     protected override void OnDestroy()
@@ -75,8 +79,8 @@ public class PortalScript : View
         if (sideACurrent != SideA.layer)
         {
             //Update lighting colors
-            SideA.sideLight.color = TranslateLayerToColor(SideA.layer);
-            CameraUtils.AdjustColorCorrectionCurves(SideA.layer, SideA.sideCamera);
+            SideA.sideLight.color = CameraUtils.TranslateLayerToColor(SideA.layer);
+            CameraUtils.AdjustColorCorrectionCurves(currentLayer, SideA.layer, SideA.sideCamera);
             CameraUtils.SetCameraCullingMask(SideA.layer, SideA.sideCamera.GetComponent<Camera>());
             SideA.triggerScript.layer = SideA.layer;
             sideACurrent = SideA.layer;
@@ -84,31 +88,18 @@ public class PortalScript : View
 
         if (sideBCurrent != SideB.layer)
         {
-            SideB.sideLight.color = TranslateLayerToColor(SideB.layer);
-            CameraUtils.AdjustColorCorrectionCurves(SideB.layer, SideB.sideCamera);
+            SideB.sideLight.color = CameraUtils.TranslateLayerToColor(SideB.layer);
+            CameraUtils.AdjustColorCorrectionCurves(currentLayer, SideB.layer, SideB.sideCamera);
             CameraUtils.SetCameraCullingMask(SideB.layer, SideB.sideCamera.GetComponent<Camera>());
             SideB.triggerScript.layer = SideB.layer;
             sideBCurrent = SideB.layer;
         }
     }
 
-    public Color TranslateLayerToColor(ColorLayer layer)
+    private void HandleColorLayerChanged(ColorLayerChangedEvent e)
     {
-        Color color = Color.white;
-        switch (layer)
-        {
-            case ColorLayer.Red:
-                color = Color.red;
-                break;
-            case ColorLayer.Green:
-                color = Color.green;
-                break;
-            case ColorLayer.Blue:
-                color = Color.blue;
-                break;
-            default:
-                break;
-        }
-        return color;
+        currentLayer = e.Layer;
+        CameraUtils.AdjustColorCorrectionCurves(currentLayer, SideA.layer, SideA.sideCamera);
+        CameraUtils.AdjustColorCorrectionCurves(currentLayer, SideB.layer, SideB.sideCamera);
     }
 }
