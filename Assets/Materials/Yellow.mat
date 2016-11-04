@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Yellow
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: 44444521507dc439894e15ee5ac9d39f, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
   m_CustomRenderQueue: -1
@@ -48,7 +48,7 @@ Material:
     - first:
         name: _MainTex
       second:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: c24351b8ad92c4622a4a13a3bc4b54eb, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
@@ -112,6 +112,12 @@ Material:
     - first:
         name: _SrcBlend
       second: 1
+    - first:
+        name: _StencilComp
+      second: 6
+    - first:
+        name: _StencilMask
+      second: 32
     - first:
         name: _UVSec
       second: 0
