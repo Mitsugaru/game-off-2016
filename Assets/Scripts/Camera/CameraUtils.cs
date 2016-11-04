@@ -20,7 +20,7 @@ public class CameraUtils
                     camera.cullingMask |= 1 << LayerMask.NameToLayer("Yellow");
                     break;
                 case ColorLayer.Green:
-                    camera.cullingMask &= ~(1 << LayerMask.NameToLayer("Red"));
+                    camera.cullingMask |= 1 << LayerMask.NameToLayer("Red");
                     camera.cullingMask |= 1 << LayerMask.NameToLayer("Green");
                     camera.cullingMask |= 1 << LayerMask.NameToLayer("Blue");
                     camera.cullingMask |= 1 << LayerMask.NameToLayer("Cyan");
@@ -28,7 +28,7 @@ public class CameraUtils
                     camera.cullingMask |= 1 << LayerMask.NameToLayer("Yellow");
                     break;
                 case ColorLayer.Blue:
-                    camera.cullingMask &= ~(1 << LayerMask.NameToLayer("Red"));
+                    camera.cullingMask |= 1 << LayerMask.NameToLayer("Red");
                     camera.cullingMask |= 1 << LayerMask.NameToLayer("Green");
                     camera.cullingMask |= 1 << LayerMask.NameToLayer("Blue");
                     camera.cullingMask |= 1 << LayerMask.NameToLayer("Cyan");
