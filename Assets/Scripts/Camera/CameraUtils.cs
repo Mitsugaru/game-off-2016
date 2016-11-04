@@ -109,6 +109,9 @@ public class CameraUtils
             case ColorLayer.Yellow:
                 c = Color.yellow;
                 break;
+            case ColorLayer.Polar:
+                c = Color.black;
+                break;
             default:
                 break;
         }

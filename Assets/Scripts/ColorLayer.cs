@@ -6,5 +6,6 @@
     Yellow,
     Red,
     Green,
-    Blue
+    Blue,
+    Polar
 }
