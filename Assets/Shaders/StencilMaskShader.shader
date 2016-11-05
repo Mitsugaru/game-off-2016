@@ -1,7 +1,9 @@
 /**
  * This shader taken from Shaders Laboratory
  * http://www.shaderslab.com/index.php?post/Stencil-effect-%3A-Invisible-crate
- * and modified for the use of this application
+ * and modified for the use of this application.
+ * Other references:
+ * http://answers.unity3d.com/questions/1240334/make-stencil-shader-target-materials-with-same-int.html
  */
 Shader "Custom/StencilMask" {
 	Properties{
@@ -12,7 +14,8 @@ Shader "Custom/StencilMask" {
 	SubShader {
 		Tags { "RenderType"="Transparent" }
 
-		Lighting Off
+		Cull Off
+		ZTest always
 
 		Stencil {
 			Ref 255
